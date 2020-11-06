@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Issue {{ details['id'] }}</title>
+</head>
+<body>
+    <h1>Issue Tracking </h1>
+    <h4> <a href="{{ url_for('start') }}"> Home </a></h4>
+    <h4>Issue Number {{ details['id'] }} </h4>
+    <h4>Status: {{ details['state'] }} {{ details['locked'] }} </h4>
+    <h4>Last Updated at {{ details['id'] }} </h4>
+    <h2> {{ details['title'] }} </h2>
+
+    <!-- Get comments -->
+        <br>
+    {% for com in comments %}
+    <h4> User {{ details['user']['login'] }} </h4>
+    <h4> {{ details['body'] }}</h4>
+    <h4> Last updated at {{ details['updated_at'] }}</h4>
+        <br>
+    {% endfor %}
+
+    <!-- Is this locked? -->
+    {% if details['locked'] %}
+    <h4>This issue is LOCKED</h4>
+    {% else %}
+    <h4>This issue is UNLOCKED</h4>
+    {% endif %}
+
+
+</body>
+</html>

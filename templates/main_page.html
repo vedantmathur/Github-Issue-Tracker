@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Issue Tracker</title>
+</head>
+<body>
+    <h1>Issue Tracking </h1>
+
+    {% set prev_page = _page - 1 %}
+    {% set next_page = _page + 1 %}
+
+    <h4> {% if sp is true %} <a href="{{ url_for('start', page=prev_page) }} "> {% endif %} Prev </a>    <a href="{{ url_for('start') }}"> Home </a>   {% if sn is true %} <a href="{{ url_for('start', page=next_page) }}"> {% endif %} Next </a> </h4>
+    <h4>Page: {{ _page + 1 }} </h4>
+
+    <!-- Get first 10 -->
+    {% for iss in issues %}
+        <br>
+    <h3> {{ iss['state'] }} - <a href="{{ url_for('detailed_view', id=iss['id']) }}"> {{ iss['title'] }} </a> </h3>
+    <h4> Issue ID {{ iss['id'] }}</h4>
+    <h4> By user {{ iss['user']['login'] }} </h4>
+    {% endfor %}
+
+</body>
+</html>
